@@ -1,7 +1,7 @@
 all: Carbon_Emission.text Continent_Emission.text Continent_Portions.text Continent_Participation.text Emission_vs_Pop country_whole_data.text Sectors_Participation_1950.jpg Sectors_Participation_1966.jpg Sectors_Participation_1982.jpg Sectors_Participation_1997.jpg Sectors_Participation_2013.jpg Continents_Participation.jpg Continents_Ranking.jpg emission_sectors_vs_years.jpg Linear_Fitting.jpg 
 
 clean:
-	rm -f Carbon_Emission.text Continent_Emission.text Continent_Portions.text Continent_Participation.text Emission_vs_Pop country_whole_data.text Sectors_Participation_1950.jpg Sectors_Participation_1966.jpg Sectors_Participation_1982.jpg Sectors_Participation_1997.jpg Sectors_Participation_2013.jpg Continents_Participation.jpg Continents_Ranking.jpg emission_sectors_vs_years.jpg Linear_Fitting.jpg
+	rm -f Carbon_Emission.text Continent_Emission.text Continent_Portions.text Continent_Participation.text Emission_vs_Pop.text country_whole_data.text Sectors_Participation_1950.jpg Sectors_Participation_1966.jpg Sectors_Participation_1982.jpg Sectors_Participation_1997.jpg Sectors_Participation_2013.jpg Continents_Participation.jpg Continents_Ranking.jpg emission_sectors_vs_years.jpg Linear_Fitting.jpg
 
 Carbon_Emission.text: 
 	Rscript 01_emission.R
