@@ -18,7 +18,7 @@ tidy_Continent_Portions <- dget("Continent_Portions.text") %>%
   set_names(c("year", "Total", "continent", "Gas", "Liquid", "Solid", "Cement", "Flaring")) %>% 
   gather(Gas, Liquid, Solid, Cement, Flaring, key = "sectors", value = "percentage")
 
-sectors_colour <- c("#33ff36", "#334fff", "#e82913", "#12dac5", "#fcf503")
+sectors_colour <- c("#334fff", "#33ff36", "#e82913", "#12dac5", "#fcf503")
 
 
 filter(tidy_Continent_Portions, year == 1950) %>% 

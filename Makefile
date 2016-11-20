@@ -1,4 +1,4 @@
-all: Carbon_Emission.text Continent_Emission.text Continent_Portions.text Continent_Participation.text Emission_vs_Pop country_whole_data.text Sectors_Participation_1950.jpg Sectors_Participation_1966.jpg Sectors_Participation_1982.jpg Sectors_Participation_1997.jpg Sectors_Participation_2013.jpg Continents_Participation.jpg Continents_Ranking.jpg emission_sectors_vs_years.jpg Linear_Fitting.jpg 
+all: hw07_automation_report.html
 
 clean:
 	rm -f Carbon_Emission.text Continent_Emission.text Continent_Portions.text Continent_Participation.text Emission_vs_Pop.text country_whole_data.text Sectors_Participation_1950.jpg Sectors_Participation_1966.jpg Sectors_Participation_1982.jpg Sectors_Participation_1997.jpg Sectors_Participation_2013.jpg Continents_Participation.jpg Continents_Ranking.jpg emission_sectors_vs_years.jpg Linear_Fitting.jpg
@@ -57,7 +57,8 @@ Linear_Fitting.jpg: Continent_Emission.text country_whole_data.text
 	Rscript 04_aggregate_plot_whole.R
 	rm Rplots.pdf
 
-
+hw07_automation_report.html: hw07_automation_report.rmd Continent_Participation.text Continent_Portions.text Emission_vs_Pop.text Sectors_Participation_1950.jpg Sectors_Participation_1966.jpg Sectors_Participation_1982.jpg Sectors_Participation_1997.jpg Sectors_Participation_2013.jpg Continents_Participation.jpg Continents_Ranking.jpg emission_sectors_vs_years.jpg Linear_Fitting.jpg
+	Rscript -e 'rmarkdown::render("$<")'
 
 
 
