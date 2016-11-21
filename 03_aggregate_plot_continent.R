@@ -3,13 +3,13 @@
 # Continent_Participation.text
 
 # Outputs: 
-# Sectors_Participation_1950.jpg
-# Sectors_Participation_1966.jpg
-# Sectors_Participation_1982.jpg
-# Sectors_Participation_1997.jpg 
-# Sectors_Participation_2013.jpg 
-# Continents_Participation.jpg
-# Continents_Ranking.jpg
+# Sectors_Participation_1950.png
+# Sectors_Participation_1966.png
+# Sectors_Participation_1982.png
+# Sectors_Participation_1997.png 
+# Sectors_Participation_2013.png 
+# Continents_Participation.png
+# Continents_Ranking.png
 
 library(tidyverse)
 library(readr)
@@ -30,7 +30,7 @@ filter(tidy_Continent_Portions, year == 1950) %>%
   theme(panel.grid.major = element_line(colour = "black",
                                         linetype = "dotdash"),
         panel.background = element_rect(fill = "gray98")) +
-  ggsave("Sectors_Participation_1950.jpg")
+  ggsave("Sectors_Participation_1950.png")
 
 filter(tidy_Continent_Portions, year == 1966) %>% 
   ggplot(aes(x = sectors, y = percentage)) + 
@@ -40,7 +40,8 @@ filter(tidy_Continent_Portions, year == 1966) %>%
   ggtitle("Participation of Each Sectror\n (Year = 1966)") + 
   theme(panel.grid.major = element_line(colour = "black",
                                         linetype = "dotdash"),
-        panel.background = element_rect(fill = "gray98")) + ggsave("Sectors_Participation_1966.jpg")
+        panel.background = element_rect(fill = "gray98")) +
+  ggsave("Sectors_Participation_1966.png")
 
 filter(tidy_Continent_Portions, year == 1982) %>% 
   ggplot(aes(x = sectors, y = percentage)) + 
@@ -50,7 +51,8 @@ filter(tidy_Continent_Portions, year == 1982) %>%
   ggtitle("Participation of Each Sectror\n (Year = 1982)") + 
   theme(panel.grid.major = element_line(colour = "black",
                                         linetype = "dotdash"),
-        panel.background = element_rect(fill = "gray98")) + ggsave("Sectors_Participation_1982.jpg")
+        panel.background = element_rect(fill = "gray98")) +
+  ggsave("Sectors_Participation_1982.png")
 
 filter(tidy_Continent_Portions, year == 1997) %>% 
   ggplot(aes(x = sectors, y = percentage)) + 
@@ -60,7 +62,8 @@ filter(tidy_Continent_Portions, year == 1997) %>%
   ggtitle("Participation of Each Sectror\n (Year = 1997)") + 
   theme(panel.grid.major = element_line(colour = "black",
                                         linetype = "dotdash"),
-        panel.background = element_rect(fill = "gray98")) + ggsave("Sectors_Participation_1997.jpg")
+        panel.background = element_rect(fill = "gray98")) +
+  ggsave("Sectors_Participation_1997.png")
 
 
 filter(tidy_Continent_Portions, year == 2013) %>% 
@@ -71,7 +74,8 @@ filter(tidy_Continent_Portions, year == 2013) %>%
   ggtitle("Participation of Each Sectror\n (Year = 2013)") + 
   theme(panel.grid.major = element_line(colour = "black",
                                         linetype = "dotdash"),
-        panel.background = element_rect(fill = "gray98")) + ggsave("Sectors_Participation_2013.jpg")
+        panel.background = element_rect(fill = "gray98")) +
+  ggsave("Sectors_Participation_2013.png")
 
 continent_colours <- c("#27da12","#175cde","#ebef09","#d00ee7","#ec160b")
 
@@ -86,7 +90,7 @@ dget("Continent_Participation.text") %>%
   theme(panel.grid.major = element_line(colour = "black",
                                         linetype = "dotdash"),
         panel.background = element_rect(fill = "gray98")) +
-  ggsave("Continents_Participation.jpg")
+  ggsave("Continents_Participation.png")
 
 
 dget("Continent_Participation.text") %>%
@@ -94,6 +98,6 @@ dget("Continent_Participation.text") %>%
   summarize(mean_participation = mean(Participation)) %>% 
   ggplot(aes(x = continent, y = mean_participation)) +
   geom_point() + xlab("Continents") + ylab("Participation Average (%)") +
-  ggtitle("Ranking Continents\n In Participation") + ggsave("Continents_Ranking.jpg")
+  ggtitle("Ranking Continents\n In Participation") + ggsave("Continents_Ranking.png")
 
 rm(tidy_Continent_Portions, sectors_colour, continet_colours)

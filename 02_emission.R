@@ -54,7 +54,7 @@ LM <- function(x, y, n=1) {
     stop('This function only works for numeric input!\n',
          'You have provided an object of class: ', class(n)[1])
   }
-  lm(y ~ poly(x, n))
+  lm(y ~ x)
 }
 
 #This function computes sum of squares:
@@ -67,7 +67,8 @@ normal <- function(x) {
 }
 
 #functions for linear modelling applicabale to a dataframe (with one input)
-LM_df <- function(df) LM(df$popPermillion, df$total_emission)
+LM_df <- function(df) LM(df$popPermillion,
+                         df$total_emission)
 
 #I have filtered data to years after 1980 since population data was not available for some countries
 #befor that time; Moreover I have eliminated chod, somalia and some other countries from modelling since only after 1998 do we have access
@@ -83,27 +84,28 @@ library(broom)
 
 #use nested data to find model coefficients
 nested_df <- ndf %>% 
-  group_by(country) %>%
+  group_by(country) %>% 
   nest() %>% 
   mutate(Lin_Fit = map(data,LM_df),
          Lin_Fit_tidy = map(Lin_Fit, tidy),
          Resid_Lin_Fit = map(Lin_Fit, resid),
          Resid_Lin_Fit_normal = map_dbl(Resid_Lin_Fit, normal))
-#use tidy and unnest to transmute list to dataframe and extract it.
 
+
+#use tidy and unnest to transmute list to dataframe and extract it.
 Emission_vs_Pop <- nested_df %>%
   dplyr::select(country, Lin_Fit_tidy, Resid_Lin_Fit_normal, data, Resid_Lin_Fit) %>% 
-  unnest(Lin_Fit_tidy) %>%
+  unnest(Lin_Fit_tidy) %>% 
   select(country:estimate) %>% 
   spread(key = term, value = estimate) %>% 
-  rename(intercept = `(Intercept)`,slope = `poly(x, n)`)
-
+  rename(intercept = `(Intercept)`,slope = x)
 
 country_whole_data <- nested_df %>% 
-  dplyr::select(country, data, Resid_Lin_Fit) %>%
+  dplyr::select(country, data, Resid_Lin_Fit) %>% 
   unnest(Resid_Lin_Fit, data) %>% 
   inner_join(Emission_vs_Pop) %>% 
   mutate(predict = (slope*popPermillion) + intercept)
+
 
 
 
