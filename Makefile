@@ -1,7 +1,7 @@
 all: hw07_automation_report.html
 
 clean:
-	rm -f Carbon_Emission.text Continent_Emission.text Continent_Portions.text Continent_Participation.text Emission_vs_Pop.text country_whole_data.text Sectors_Participation_1950.png Sectors_Participation_1966.png Sectors_Participation_1982.png Sectors_Participation_1997.png Sectors_Participation_2013.png Continents_Participation.png Continents_Ranking.png emission_sectors_vs_years.png Linear_Fitting.png Jpn_Linear_Fitting.png
+	rm -f Carbon_Emission.text Continent_Emission.text Continent_Portions.text Continent_Participation.text Emission_vs_Pop.text country_whole_data.text Sectors_Participation_1950.png Sectors_Participation_1966.png Sectors_Participation_1982.png Sectors_Participation_1997.png Sectors_Participation_2013.png Continents_Participation.png Continents_Ranking.png emission_sectors_vs_years.png Linear_Fitting.png Jpn_Linear_Fitting.png hw07_automation_report.md
 
 Carbon_Emission.text: 
 	Rscript 01_emission.R
